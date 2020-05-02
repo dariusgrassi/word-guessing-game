@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" styleClass="vbox" fx:controller = "application.MyController" fx:id = "firstBox" spacing="30.0">
+
+    <Label text="Enter Port Number: " textFill="white" translateX="25.0" translateY="20.0">
+        <font>
+            <Font size="40.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="portNum" translateX="95.0" maxWidth="200.0"/>
+
+    <Label text="Enter Username: " textFill="white" translateX="25.0">
+        <font>
+            <Font size="40.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="username" translateX="95.0" maxWidth="200.0"/>
+
+    <Button fx:id="connect" text="Connect" onAction="#connectToServer" translateX="350.0"/>
+</VBox>

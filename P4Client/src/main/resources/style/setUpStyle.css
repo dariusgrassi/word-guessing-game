@@ -1,0 +1,13 @@
+.button{
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #c31e04;
+    -fx-border-color: #edb901;
+    -fx-border-width: 2.0;
+}
+
+.vbox{
+    -fx-background-color: #000000;
+    -fx-border-color: #0002c5;
+    -fx-border-width: 5.0;
+}
