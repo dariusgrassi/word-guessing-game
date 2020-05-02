@@ -10,8 +10,6 @@ import java.util.function.Consumer;
 import javafx.application.Platform;
 import javafx.scene.control.ListView;
 
-
-
 public class Server {
 
     int count = 1;
