@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" styleClass="vbox" fx:controller = "application.MyController" fx:id = "secondBox" spacing="30.0">
+
+<!-- going to add label here after we set up the username logic-->
+
+    <HBox fx:id="mainBox" spacing="25.0" translateX="50.0" translateY="35.0">
+        <Button fx:id="cat1" text="Music Genres" onAction="#cat1Clicked"/>
+        <Button fx:id="cat2" text="Animals" onAction="#cat2Clicked"/>
+        <Button fx:id="cat3" text="Foods" onAction="#cat3Clicked"/>
+    </HBox>
+
+    <Label text="Remaining Guesses: " textFill="white" translateY="35.0" translateX="20.0">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Label>
+
+    <Label text="Guessed Correctly: " textFill="white" translateY="30.0" translateX="20.0">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Label>
+
+    <Button styleClass="endButton" fx:id="end" text="End Game" translateX="180.0" translateY="90.0"/>
+
+</VBox>
