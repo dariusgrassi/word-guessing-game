@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class WordGuessServer extends Application {
@@ -18,12 +17,11 @@ public class WordGuessServer extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/FXML/MyFXML.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/FXML/scene1.fxml"));
 
 			primaryStage.setTitle("Word Guessing Game! (Server)");
 
-			Scene s1 = new Scene(root, 750,500);
-			s1.getStylesheets().add("/styles/style.css");
+			Scene s1 = new Scene(root, 500,250);
 			primaryStage.setScene(s1);
 			primaryStage.show();
 

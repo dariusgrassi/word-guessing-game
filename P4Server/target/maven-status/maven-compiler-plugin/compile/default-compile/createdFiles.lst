@@ -1,2 +1,6 @@
-application/Controller.class
+application/Server.class
+application/GuessInfo.class
 application/WordGuessServer.class
+application/Server$ClientThread.class
+application/Server$TheServer.class
+application/Controller.class
