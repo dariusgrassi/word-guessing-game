@@ -10,7 +10,8 @@ public class GuessInfo implements Serializable {
     int remainingGuess;
     int correctWords;
     char guessedLetter;
-
+    String user;
+    
     boolean correct;
     ArrayList<Integer> catChosen = new ArrayList<>();
 

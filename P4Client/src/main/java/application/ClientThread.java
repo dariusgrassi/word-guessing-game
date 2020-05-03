@@ -34,6 +34,7 @@ public class ClientThread extends Thread {
 			i = new ObjectInputStream( sClient.getInputStream());
 
 			sClient.setTcpNoDelay(true);
+			
 
 		} catch( Exception e){
 			System.out.println("Stream Wasnt Open");
@@ -70,8 +71,10 @@ public class ClientThread extends Thread {
 			o.reset();
 			o.writeObject(data);
 			o.reset();
+			System.out.println("sent info");
+			return;
 		} catch (IOException e) {
-
+			
 			e.printStackTrace();
 		}
 	}

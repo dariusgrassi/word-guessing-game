@@ -42,7 +42,7 @@ public class MyController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+    	
     }
 
     public void connectToServer(ActionEvent e) throws IOException{
@@ -54,17 +54,19 @@ public class MyController implements Initializable {
 
         clientConnection = new ClientThread( data-> {
             Platform.runLater(()-> {
+              System.out.println("Froze inside runLater");
                 //listItems.getItems().add(data.toString());
-                
-                game = clientConnection.game;
+              game.user = userName; // Doesnt override game info
+              System.out.println(userName);
+              clientConnection.send(game);
 
                 //TODO: logic for handling updates from server, like guess responses
             });
-        }, port);
+        }, port);                
 
-
-
-
+        game.user = userName; // Doesnt override game info
+//        clientConnection.game = game;
+        System.out.println(userName);
         // set the username
         // connect to server
 
@@ -128,6 +130,7 @@ public class MyController implements Initializable {
         String val = ((Button)e.getSource()).getText(); // Get the name of button
         game.guessedLetter = val.charAt(0);             // set the name to guessed letter
         
+        System.out.println("User " + game.user + " clicked " + game.guessedLetter);
         // if the person guesses wrong, then it returns to the main menu
         if( !game.correct) {
 
