@@ -30,6 +30,9 @@ public class MyController implements Initializable {
 
     @FXML
     private Button cat1, cat2, cat3;
+    
+    @FXML
+    private Button a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
 
     @FXML
     private TextField portNum, username;
@@ -53,6 +56,7 @@ public class MyController implements Initializable {
         clientConnection = new ClientThread( data-> {
             Platform.runLater(()-> {
                 //listItems.getItems().add(data.toString());
+            	System.out.println("Yo set username starting");
                 game = clientConnection.game;
                 
                 //TODO: logic for handling updates from server, like guess responses
@@ -60,11 +64,11 @@ public class MyController implements Initializable {
         });
         
 
-        System.out.println("Yo set username starting");
+        
 
         // set the username
         // connect to server
-        clientConnection.run( port);
+        //clientConnection.run( port);
 
         // go to game menu
         //get instance of the loader class
@@ -72,7 +76,7 @@ public class MyController implements Initializable {
         Parent secondBox = loader.load(); //load view into parent
         secondBox.getStylesheets().add("/style/gmStyle.css");//set style
 
-
+        
         firstBox.getScene().setRoot( secondBox);//update scene graph
 
 
@@ -118,5 +122,9 @@ public class MyController implements Initializable {
 
     }
 
-
+    public void letterClicked(ActionEvent e) {
+    	
+    }
+    
+    
 }
