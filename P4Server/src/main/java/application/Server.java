@@ -13,7 +13,7 @@ import javafx.scene.control.ListView;
 public class Server {
 
     int count = 1;
-    ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
+    ArrayList<ClientThread> clients = new ArrayList<>();
     TheServer server;
     private Consumer<Serializable> callback;
 
@@ -31,11 +31,12 @@ public class Server {
         server.start();
     }
 
-
     public class TheServer extends Thread {
 
         //Loop runs as long as server is up
         public void run() {
+
+            System.out.println("Server is now running on port " + portNum);
 
             try (ServerSocket mySocket = new ServerSocket(portNum)) {
                 //Listen for client to connect to server
@@ -43,7 +44,9 @@ public class Server {
 
                     //When client does connect, add them to our list of clients
                     ClientThread c = new ClientThread(mySocket.accept(), count);
-                    callback.accept("client has connected to server: " + "client #" + count);
+                    System.out.println("client has connected to server: " + "client #" + count);
+
+                    callback.accept("Client has connected to server: " + "client #" + count);
                     clients.add(c);
                     c.start();
 
@@ -56,6 +59,7 @@ public class Server {
     }
 
     //Thread for each client is created each time a client joins
+    //TODO: implement score tracker for ClientThread
     class ClientThread extends Thread {
         Socket connection;
         int count;
@@ -88,6 +92,19 @@ public class Server {
                 out = new ObjectOutputStream(connection.getOutputStream());
                 connection.setTcpNoDelay(true);
             } catch (Exception e) {
+            }
+
+            while(true) {
+                try {
+                    game = (GuessInfo) in.readObject();
+                }
+
+                catch(Exception e){
+                    callback.accept("Client " + count + " disconnected from the game.");
+                    clients.remove(this);
+                    updateClients("Client #" + count + " has left the server!");
+                    break;
+                }
             }
         }
     }
