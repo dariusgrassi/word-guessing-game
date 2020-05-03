@@ -64,7 +64,7 @@ public class MyController implements Initializable {
 
         // set the username
         // connect to server
-        clientConnection.run( port);
+//        clientConnection.run( port);
 
         // go to game menu
         //get instance of the loader class
