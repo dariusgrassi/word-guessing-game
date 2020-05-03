@@ -18,12 +18,14 @@ public class ClientThread extends Thread {
 	private Consumer<Serializable> callback;
 	
 	GuessInfo game;
+	int portNum;
 
-	ClientThread(Consumer<Serializable> call){
-		callback = call;
+	ClientThread(Consumer<Serializable> call, int port){
+		this.callback = call;
+		this.portNum = port;
 	}
 
-	public void run( int portNum) throws IOException {
+	public void run() {
 
 		System.out.println( "inside the run function. port num is: " + portNum);
 		try{
@@ -36,14 +38,14 @@ public class ClientThread extends Thread {
 		} catch( Exception e){
 			System.out.println("Stream Wasnt Open");
 			System.out.println("terminating...");
-			sClient.close();
+			//sClient.close();
 		}
 
 		//Where client receives GuessInfo from server
 		while( true){
-
 			try{
 				game = (GuessInfo) i.readObject();
+				System.out.println("Froze here");
 				callback.accept(game);
 
 			} catch( Exception e){

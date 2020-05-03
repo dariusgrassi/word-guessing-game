@@ -60,7 +60,7 @@ public class MyController implements Initializable {
 
                 //TODO: logic for handling updates from server, like guess responses
             });
-        });
+        }, port);
 
 
 
@@ -68,7 +68,7 @@ public class MyController implements Initializable {
         // set the username
         // connect to server
 
-        //clientConnection.run( port);
+        clientConnection.start();
 
         // go to game menu
         //get instance of the loader class
