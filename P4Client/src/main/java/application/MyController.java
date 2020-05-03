@@ -124,6 +124,78 @@ public class MyController implements Initializable {
     }
 
     public void letterClicked(ActionEvent e) {
+    	((Button)e.getSource()).setDisable(true);       // Disable character button
+    	((Button)e.getSource()).setStyle("-fx-background-color:Black;");
+    	String val = ((Button)e.getSource()).getText(); // Get the name of button
+    	game.guessedLetter = val.charAt(0);             // set the name to guessed letter
+   
+    	game.remainingGuess += 1;
+    	if(game.remainingGuess >= 6) {
+    		//TODO: Got to add functionality for counting how many categories are wrong
+    		back();
+    	}
+    	
+    }
+    
+    public void backActionEvent(ActionEvent e) {
+    	back();
+    }
+    
+    public void back() {
+    	game.remainingGuess = 0;
+    	// There is probably a more efficient way of doint this, but idc
+    	a.setDisable(false);
+    	b.setDisable(false);
+    	c.setDisable(false);
+    	d.setDisable(false);
+    	e.setDisable(false);
+    	f.setDisable(false);
+    	g.setDisable(false);
+    	g.setDisable(false);
+    	i.setDisable(false);
+    	j.setDisable(false);
+    	k.setDisable(false);
+    	l.setDisable(false);
+    	m.setDisable(false);
+    	n.setDisable(false);
+    	o.setDisable(false);
+    	p.setDisable(false);
+    	q.setDisable(false);
+    	r.setDisable(false);
+    	s.setDisable(false);
+    	t.setDisable(false);
+    	u.setDisable(false);
+    	v.setDisable(false);
+    	w.setDisable(false);
+    	x.setDisable(false);
+    	y.setDisable(false);
+    	z.setDisable(false);
+    	a.setStyle("-fx-background-color: #ff8f83;");
+    	b.setStyle("-fx-background-color: #ff8f83;");
+    	c.setStyle("-fx-background-color: #ff8f83;");
+    	d.setStyle("-fx-background-color: #ff8f83;");
+    	e.setStyle("-fx-background-color: #ff8f83;"); 
+    	f.setStyle("-fx-background-color: #ff8f83;"); 
+    	g.setStyle("-fx-background-color: #ff8f83;"); 
+    	g.setStyle("-fx-background-color: #ff8f83;"); 
+    	i.setStyle("-fx-background-color: #ff8f83;");  
+    	j.setStyle("-fx-background-color: #ff8f83;"); 
+    	k.setStyle("-fx-background-color: #ff8f83;");  
+    	l.setStyle("-fx-background-color: #ff8f83;"); 
+    	m.setStyle("-fx-background-color: #ff8f83;");
+    	n.setStyle("-fx-background-color: #ff8f83;");  
+    	o.setStyle("-fx-background-color: #ff8f83;"); 
+    	p.setStyle("-fx-background-color: #ff8f83;"); 
+    	q.setStyle("-fx-background-color: #ff8f83;"); 
+    	r.setStyle("-fx-background-color: #ff8f83;"); 
+    	s.setStyle("-fx-background-color: #ff8f83;"); 
+    	t.setStyle("-fx-background-color: #ff8f83;"); 
+    	u.setStyle("-fx-background-color: #ff8f83;"); 
+    	v.setStyle("-fx-background-color: #ff8f83;"); 
+    	w.setStyle("-fx-background-color: #ff8f83;"); 
+    	x.setStyle("-fx-background-color: #ff8f83;"); 
+    	y.setStyle("-fx-background-color: #ff8f83;"); 
+    	z.setStyle("-fx-background-color: #ff8f83;"); 
     	
     }
     

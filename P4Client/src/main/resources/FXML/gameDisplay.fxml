@@ -16,35 +16,35 @@
     <center>
         <VBox spacing="20.0" translateY="160.0" translateX="10.0">
             <HBox layoutX="10.0" layoutY="10.0" spacing="7.5" translateX="12.5">
-                <Button fx:id="a" text="A"/>
-                <Button fx:id="b" text="B"/>
-                <Button fx:id="c" text="C"/>
-                <Button fx:id="d" text="D"/>
-                <Button fx:id="e" text="E"/>
-                <Button fx:id="f" text="F"/>
-                <Button fx:id="g" text="G"/>
-                <Button fx:id="h" text="H"/>
-                <Button fx:id="i" text="I"/>
-                <Button fx:id="j" text="J"/>
-                <Button fx:id="k" text="K"/>
-                <Button fx:id="l" text="L"/>
-                <Button fx:id="m" text="M"/>
+                <Button fx:id="a" text="A" onAction="#letterClicked"/>
+                <Button fx:id="b" text="B" onAction="#letterClicked"/>
+                <Button fx:id="c" text="C" onAction="#letterClicked"/>
+                <Button fx:id="d" text="D" onAction="#letterClicked"/>
+                <Button fx:id="e" text="E" onAction="#letterClicked"/>
+                <Button fx:id="f" text="F" onAction="#letterClicked"/>
+                <Button fx:id="g" text="G" onAction="#letterClicked"/>
+                <Button fx:id="h" text="H" onAction="#letterClicked"/>
+                <Button fx:id="i" text="I" onAction="#letterClicked"/>
+                <Button fx:id="j" text="J" onAction="#letterClicked"/>
+                <Button fx:id="k" text="K" onAction="#letterClicked"/>
+                <Button fx:id="l" text="L" onAction="#letterClicked"/>
+                <Button fx:id="m" text="M" onAction="#letterClicked"/>
             </HBox>
 
             <HBox layoutX="10.0" layoutY="10.0" spacing="7.5" translateX="5.0">
-                <Button fx:id="n" text="N"/>
-                <Button fx:id="o" text="O"/>
-                <Button fx:id="p" text="P"/>
-                <Button fx:id="q" text="Q"/>
-                <Button fx:id="r" text="R"/>
-                <Button fx:id="s" text="S"/>
-                <Button fx:id="t" text="T"/>
-                <Button fx:id="u" text="U"/>
-                <Button fx:id="v" text="V"/>
-                <Button fx:id="w" text="W"/>
-                <Button fx:id="x" text="X"/>
-                <Button fx:id="y" text="Y"/>
-                <Button fx:id="z" text="Z"/>
+                <Button fx:id="n" text="N" onAction="#letterClicked"/>
+                <Button fx:id="o" text="O" onAction="#letterClicked"/>
+                <Button fx:id="p" text="P" onAction="#letterClicked"/>
+                <Button fx:id="q" text="Q" onAction="#letterClicked"/>
+                <Button fx:id="r" text="R" onAction="#letterClicked"/>
+                <Button fx:id="s" text="S" onAction="#letterClicked"/>
+                <Button fx:id="t" text="T" onAction="#letterClicked"/>
+                <Button fx:id="u" text="U" onAction="#letterClicked"/>
+                <Button fx:id="v" text="V" onAction="#letterClicked"/>
+                <Button fx:id="w" text="W" onAction="#letterClicked"/>
+                <Button fx:id="x" text="X" onAction="#letterClicked"/>
+                <Button fx:id="y" text="Y" onAction="#letterClicked"/>
+                <Button fx:id="z" text="Z" onAction="#letterClicked"/>
             </HBox>
 
             <Label text="Guesses Remaining: " textFill="white" translateY="25.0" translateX="20.0">
