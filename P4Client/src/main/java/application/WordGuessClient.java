@@ -21,7 +21,7 @@ public class WordGuessClient extends Application {
 			// Read file fxml and draw interface.
 			Parent root = FXMLLoader.load(getClass().getResource("/FXML/setUpOne.fxml"));
 
-			primaryStage.setTitle("My Application");
+			primaryStage.setTitle("Word Guessing Game");
 			Scene s1 = new Scene(root, 500,500);
 			s1.getStylesheets().add("/style/setUpStyle.css");
 			primaryStage.setScene(s1);

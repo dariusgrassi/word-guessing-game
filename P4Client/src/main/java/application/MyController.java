@@ -47,6 +47,8 @@ public class MyController implements Initializable {
         String portN = portNum.getText();
         int port = Integer.parseInt( portN);
         String userName = username.getText();
+        
+        System.out.println("Yo client thread starting");
 
         clientConnection = new ClientThread( data-> {
             Platform.runLater(()-> {
@@ -56,6 +58,9 @@ public class MyController implements Initializable {
                 //TODO: logic for handling updates from server, like guess responses
             });
         });
+        
+
+        System.out.println("Yo set username starting");
 
         // set the username
         // connect to server
