@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 public class MyController implements Initializable {
+
+    GuessInfo game = new GuessInfo();
+    ClientThread clientConnection;
 
     @FXML
     private VBox firstBox;
@@ -27,6 +31,11 @@ public class MyController implements Initializable {
     @FXML
     private Button cat1, cat2, cat3;
 
+    @FXML
+    private TextField portNum, username;
+
+    private ListView<String> listItems;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,9 +44,19 @@ public class MyController implements Initializable {
 
     public void connectToServer(ActionEvent e) throws IOException{
         // check that both textfields were filled
+        String portN = portNum.getText();
+        int port = Integer.parseInt( portN);
+        String userName = username.getText();
+
+        clientConnection = new ClientThread( data-> {
+            Platform.runLater(()->
+                    listItems.getItems().add(data.toString())
+            );
+        });
 
         // set the username
         // connect to server
+        clientConnection.run( port);
 
         // go to game menu
         //get instance of the loader class
@@ -54,6 +73,7 @@ public class MyController implements Initializable {
     public void cat1Clicked(ActionEvent e) throws IOException{
         // disable the button that was clicked
         cat1.setDisable( true);
+        game.catChosen.add(1);
 
         // go to the game screen
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/gameDisplay.fxml"));
@@ -68,6 +88,7 @@ public class MyController implements Initializable {
     public void cat2Clicked(ActionEvent e) throws IOException{
         // disable the button that was clicked
         cat2.setDisable(true);
+        game.catChosen.add(2);
 
         // Changing Screen to Game Screen
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/gameDisplay.fxml"));
@@ -80,11 +101,13 @@ public class MyController implements Initializable {
     public void cat3Clicked(ActionEvent e) throws IOException{
         // disable the button that was clicked
         cat3.setDisable(true);
+        game.catChosen.add(3);
         // Changing Screen to Game Screen
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/gameDisplay.fxml"));
         Parent thirdBox = loader.load(); //load view into parent
         thirdBox.getStylesheets().add("/style/gdStyle.css");//set style
         secondBox.getScene().setRoot( thirdBox);//update scene graph
+
     }
 
 
