@@ -51,12 +51,11 @@ public class MyController implements Initializable {
         int port = Integer.parseInt( portN);
         String userName = username.getText();
 
-        System.out.println("Yo client thread starting");
 
         clientConnection = new ClientThread( data-> {
             Platform.runLater(()-> {
                 //listItems.getItems().add(data.toString());
-                System.out.println("Yo set username starting");
+                
                 game = clientConnection.game;
 
                 //TODO: logic for handling updates from server, like guess responses

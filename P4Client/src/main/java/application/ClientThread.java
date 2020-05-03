@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.management.ManagementFactory;
 import java.net.Socket;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
@@ -45,8 +46,14 @@ public class ClientThread extends Thread {
 				game = (GuessInfo) i.readObject();
 				callback.accept(game);
 
-			} catch( Exception e){ // TODO: logic for calculating unique PIDS
+			} catch( Exception e){
 				System.out.println("Socket Issues");
+				// TODO: logic for calculating unique PIDS
+				  // Do we actually need to do this, doesnt seem to be a good way on Java8
+			    // I recommend these codes if needed 
+//				String pid = ManagementFactory.getRuntimeMXBean().getName();
+//				int splitMark = pid.indexOf("@");
+//				if(splitMark != -1) {String pidNumbers = pid.substring(0, splitMark);}
 			}
 
 		
