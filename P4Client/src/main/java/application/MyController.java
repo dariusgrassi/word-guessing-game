@@ -68,6 +68,7 @@ public class MyController implements Initializable {
 
         // set the username
         // connect to server
+
         //clientConnection.run( port);
 
         // go to game menu
