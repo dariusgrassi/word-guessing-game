@@ -15,6 +15,8 @@ public class ClientThread extends Thread {
 	ObjectInputStream i;
 
 	private Consumer<Serializable> callback;
+	
+	GuessInfo game;
 
 	ClientThread(Consumer<Serializable> call){
 		callback = call;
@@ -24,26 +26,32 @@ public class ClientThread extends Thread {
 
 		System.out.println( "inside the run function. port num is: " + portNum);
 		try{
-			sClient = new Socket( "127.0.0.1", portNum);
+			sClient = new Socket("127.0.0.1", portNum);
 			o = new ObjectOutputStream( sClient.getOutputStream());
 			i = new ObjectInputStream( sClient.getInputStream());
+			sClient.setTcpNoDelay(true);
 
 		} catch( Exception e){}
 
+		//Where client receives GuessInfo from server
 		while( true){
 
 			try{
-				String message = i.readObject().toString();
+				game = (GuessInfo) i.readObject();
 				callback.accept(message);
 
+				//TODO: logic for calculating unique PIDs
 			} catch( Exception e){}
 		}
 	}
 
-	public void send(String data) {
+	//Where client sends GuessInfo to server
+	public void send(GuessInfo data) {
 
 		try {
+			o.reset();
 			o.writeObject(data);
+			o.reset();
 		} catch (IOException e) {
 
 			e.printStackTrace();
