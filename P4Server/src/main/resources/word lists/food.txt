@@ -1,0 +1,49 @@
+popcorn
+chocolate
+rice
+chicken
+liver
+escargot
+macaroon
+date
+pickle
+kiwi
+apple
+pear
+orange
+banana
+gyro
+cotton candy
+funnel cake
+ice cream
+steak
+tofu
+cucumber
+mushroom
+quiche
+asparagas
+pasta
+tomato
+lettuce
+cheese
+bacon
+taco
+pizza
+radish
+bean sprout
+green bean
+broccoli
+shrimp
+tuna
+mackerel
+salmon
+duck
+scallop
+cheeseburger
+egg
+pancake
+waffle
+cereal
+sushi
+tilapia
+onion

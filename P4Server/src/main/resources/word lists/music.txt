@@ -1,0 +1,50 @@
+classical
+rock
+jazz
+hip hop
+electronic
+r&b
+reggae
+folk
+punk
+k-Pop
+cultural
+spiritual
+soul
+alternative
+blues
+lullaby
+parody
+country
+house
+disco
+disney
+background
+holiday
+Latin
+opera
+new age
+metal
+guitar
+vocals
+bass
+flute
+violin
+viola
+clarinet
+snare
+saxophone
+trumpet
+trombone
+piano
+cymbals
+cowbell
+chimes
+bass drum
+bassoon
+harp
+ukulele
+fiddle
+organ
+triangle
+french horn
