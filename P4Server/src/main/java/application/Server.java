@@ -77,7 +77,6 @@ public class Server {
             for (ClientThread t : clients) {
                 try {
                     t.out.reset();
-                    game.message = message;
                     t.out.writeObject(game);
                     t.out.reset();
                 } catch (Exception e) {
