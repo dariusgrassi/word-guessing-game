@@ -20,28 +20,38 @@ public class ClientThread extends Thread {
 		callback = call;
 	}
 
-	public void run( int portNum) {
+	public void run( int portNum) throws IOException {
 
 		System.out.println( "inside the run function. port num is: " + portNum);
 		try{
 			sClient = new Socket( "127.0.0.1", portNum);
 			o = new ObjectOutputStream( sClient.getOutputStream());
 			i = new ObjectInputStream( sClient.getInputStream());
+			
 
-		} catch( Exception e){}
-
+		} catch( Exception e){
+			System.out.println("Stream Wasnt Open");
+			System.out.println("terminating...");
+			sClient.close();
+		}
+		
 		while( true){
 
 			try{
+				
 				String message = i.readObject().toString();
 				callback.accept(message);
+				
 
-			} catch( Exception e){}
+			} catch( Exception e){
+				System.out.println("Socket Issues");
+			}
 		}
 	}
 
 	public void send(String data) {
 
+		System.out.println("inside the send function.");
 		try {
 			o.writeObject(data);
 		} catch (IOException e) {
