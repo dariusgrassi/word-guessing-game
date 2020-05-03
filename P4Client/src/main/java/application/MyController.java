@@ -49,9 +49,12 @@ public class MyController implements Initializable {
         String userName = username.getText();
 
         clientConnection = new ClientThread( data-> {
-            Platform.runLater(()->
-                    listItems.getItems().add(data.toString())
-            );
+            Platform.runLater(()-> {
+                //listItems.getItems().add(data.toString());
+                game = clientConnection.game;
+                
+                //TODO: logic for handling updates from server, like guess responses
+            });
         });
 
         // set the username
