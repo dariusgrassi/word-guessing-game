@@ -132,7 +132,7 @@ public class MyController implements Initializable {
         // if the person guesses wrong, then it returns to the main menu
         if( !game.correct) {
 
-            game.remainingGuess += 1;
+            game.remainingGuess -= 1;
             //TODO: Got to add functionality for counting how many categories are wrong
             // when the remaining guesses reaches 0 the game ends
         }
