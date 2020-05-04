@@ -26,6 +26,6 @@
         </font>
     </Label>
 
-    <Button styleClass="endButton" fx:id="end" text="End Game" translateX="180.0" translateY="90.0"/>
+    <Button styleClass="endButton" fx:id="end" text="End Game" onAction="#ending" translateX="180.0" translateY="90.0"/>
 
 </VBox>

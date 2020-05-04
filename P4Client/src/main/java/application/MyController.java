@@ -32,12 +32,15 @@ public class MyController implements Initializable {
     private Button cat1, cat2, cat3;
 
     @FXML
-    private Button a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
+    private Button a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z, end;
 
     @FXML
     private TextField portNum, username;
 
     private ListView<String> listItems;
+    
+    @FXML
+    private Label lblRemain;
 
 
     @Override
@@ -56,8 +59,6 @@ public class MyController implements Initializable {
             Platform.runLater(()-> {
               System.out.println("Froze inside runLater");
                 //listItems.getItems().add(data.toString());
-              game.user = userName; // Doesnt override game info
-              System.out.println(userName);
               clientConnection.send(game);
 
                 //TODO: logic for handling updates from server, like guess responses
@@ -132,6 +133,11 @@ public class MyController implements Initializable {
         
         
         // TODO: Update game to server, Get Server response
+//        System.out.println("froze at send");
+//        clientConnection.send(game);
+//        System.out.println("Made it past send");
+//		game = clientConnection.recieve();
+
         
         System.out.println("User " + game.user + " clicked " + game.guessedLetter);
         
@@ -142,6 +148,8 @@ public class MyController implements Initializable {
         if(game.remainingGuess >= 0) {   	
             game.remainingGuess -= 1;
             System.out.println("Counting down: " + game.remainingGuess);
+//            lblRemain.setText("Guesses Remaining: " + game.remainingGuess);
+             
             
             //TODO: Got to add functionality for counting how many categories are wrong
             // when the remaining guesses reaches 0 the game ends
@@ -178,8 +186,13 @@ public class MyController implements Initializable {
         Parent secondBox = loader.load(); //load view into parent
         secondBox.getStylesheets().add("/style/gmStyle.css");//set style
 
-
         thirdBox.getScene().setRoot( secondBox);//update scene graph	
+    }
+    
+    // Ends Program
+    public void ending(ActionEvent e) throws IOException {
+    	// TODO: SCORE SHOULD BE SHOWN
+    	clientConnection.ending();
     }
 
 

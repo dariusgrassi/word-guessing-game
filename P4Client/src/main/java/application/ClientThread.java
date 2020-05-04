@@ -49,8 +49,8 @@ public class ClientThread extends Thread {
 			try{
 				System.out.println("Will it freeze?");
 				game = (GuessInfo) i.readObject();
-				System.out.println("Froze here");
-				callback.accept(game);
+//				System.out.println("Froze here");
+//				callback.accept(game);
 
 			} catch( Exception e){
 				System.out.println("Socket Issues");
@@ -65,6 +65,27 @@ public class ClientThread extends Thread {
 		
 		}
 	}
+	
+	
+	public void ending() throws IOException {
+		sClient.close();
+	}
+	
+	public GuessInfo recieve() {
+		
+		System.out.println("Will it freeze? Inside recieve()");
+		try {
+			game = (GuessInfo) i.readObject();
+			System.out.println("Froze here Inside recieve()");
+			callback.accept(game);
+			return game;
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return game;
+		
+	}
 
 	//Where client sends GuessInfo to server
 	public void send(GuessInfo data) {
@@ -73,7 +94,6 @@ public class ClientThread extends Thread {
 		try {
 			o.reset();
 			o.writeObject(data);
-			o.reset();
 			System.out.println("sent info");
 		} catch (IOException e) {
 			

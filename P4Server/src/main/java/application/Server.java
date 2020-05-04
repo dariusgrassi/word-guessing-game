@@ -96,6 +96,7 @@ public class Server {
             while(true) {
                 try {
                     game = (GuessInfo) in.readObject();
+//                    callback.accept(game);
                 }
 
                 catch(Exception e){

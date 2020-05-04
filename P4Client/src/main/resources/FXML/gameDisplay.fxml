@@ -47,13 +47,13 @@
                 <Button fx:id="z" text="Z" onAction="#letterClicked"/>
             </HBox>
 
-            <Label text="Guesses Remaining: " textFill="white" translateY="25.0" translateX="20.0">
+            <Label text="Guesses Remaining: " id="lblRemain" textFill="white" translateY="25.0" translateX="20.0">
                 <font>
                     <Font size="20.0"/>
                 </font>
             </Label>
 
-            <Button fx:id="backMenu" styleClass="backMenu" text="Back To Menu" translateX="160.0" translateY="75.0"/>
+            <Button fx:id="backMenu" styleClass="backMenu" text="Back To Menu" onAction="#backAction" translateX="160.0" translateY="75.0"/>
 
         </VBox>
 
