@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 public class MyController implements Initializable {
 
@@ -134,9 +135,9 @@ public class MyController implements Initializable {
         
         
         // TODO: Update game to server, Get Server response
-        System.out.println("froze at send");
-        clientConnection.send(game);
-        System.out.println("Made it past send");
+//        System.out.println("froze at send");
+//        clientConnection.send(game);
+//        System.out.println("Made it past send");
 //		game = clientConnection.recieve();
 
         
@@ -220,6 +221,8 @@ public class MyController implements Initializable {
     // Ends Program
     public void ending(ActionEvent e) throws IOException {
     	// TODO: SCORE SHOULD BE SHOWN
+    	Stage primary = (Stage) secondBox.getScene().getWindow();
+    	primary.close();
     	clientConnection.ending();
     }
 

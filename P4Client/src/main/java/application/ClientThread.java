@@ -68,7 +68,8 @@ public class ClientThread extends Thread {
 	
 	
 	public void ending() throws IOException {
-		//TODO: Does not close connection
+		i.close();
+		o.close();
 		return;
 	}
 	
