@@ -23,10 +23,12 @@ public class ClientThread extends Thread {
 	ClientThread(Consumer<Serializable> call, int port){
 		this.callback = call;
 		this.portNum = port;
+		this.game = new GuessInfo();
 	}
 
 	public void run() {
-
+		
+		
 		System.out.println( "inside the run function. port num is: " + portNum);
 		try{
 			sClient = new Socket("127.0.0.1", portNum);
@@ -45,6 +47,7 @@ public class ClientThread extends Thread {
 		//Where client receives GuessInfo from server
 		while( true){
 			try{
+				System.out.println("Will it freeze?");
 				game = (GuessInfo) i.readObject();
 				System.out.println("Froze here");
 				callback.accept(game);
@@ -72,7 +75,6 @@ public class ClientThread extends Thread {
 			o.writeObject(data);
 			o.reset();
 			System.out.println("sent info");
-			return;
 		} catch (IOException e) {
 			
 			e.printStackTrace();

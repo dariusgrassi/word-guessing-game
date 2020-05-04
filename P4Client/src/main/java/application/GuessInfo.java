@@ -12,7 +12,7 @@ public class GuessInfo implements Serializable {
     char guessedLetter;
     String user;
 
-    boolean correct;
+    boolean correct; // Assuming 
     ArrayList<Integer> catChosen = new ArrayList<>();
 
     GuessInfo(){

@@ -124,21 +124,62 @@ public class MyController implements Initializable {
 
     }
 
-    public void letterClicked(ActionEvent e) {
+    public void letterClicked(ActionEvent e) throws IOException {
         ((Button)e.getSource()).setDisable(true);       // Disable character button
         ((Button)e.getSource()).setStyle("-fx-background-color:Black;");
         String val = ((Button)e.getSource()).getText(); // Get the name of button
         game.guessedLetter = val.charAt(0);             // set the name to guessed letter
         
+        
+        // TODO: Update game to server, Get Server response
+        
         System.out.println("User " + game.user + " clicked " + game.guessedLetter);
-        // if the person guesses wrong, then it returns to the main menu
-        if( !game.correct) {
+        
 
+//        System.out.println("Counting down: " +game.remainingGuess);
+        
+        // if the person guesses wrong, then it returns to the main menu
+        if(game.remainingGuess >= 0) {   	
             game.remainingGuess -= 1;
+            System.out.println("Counting down: " + game.remainingGuess);
+            
             //TODO: Got to add functionality for counting how many categories are wrong
             // when the remaining guesses reaches 0 the game ends
+            
+            if(game.correct) {
+            	back();
+            }
+            if(game.remainingGuess == 0) { // Lost a category
+            	//TODO: If there is anything client side that has to happen
+            	// 	when losing, do here
+            	game.remainingGuess = 6;
+            	back();
+            }
         }
+        
 
+    }
+    
+    
+    public void backAction(ActionEvent e) {
+    	try {
+    		//TODO: Lost for backing out
+    		game.remainingGuess = 6;
+			back();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+    }
+    
+    public void back() throws IOException {
+    	// go to game menu
+        //get instance of the loader class
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/gameMenu.fxml"));
+        Parent secondBox = loader.load(); //load view into parent
+        secondBox.getStylesheets().add("/style/gmStyle.css");//set style
+
+
+        thirdBox.getScene().setRoot( secondBox);//update scene graph	
     }
 
 
