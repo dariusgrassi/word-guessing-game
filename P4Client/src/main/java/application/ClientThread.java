@@ -49,26 +49,27 @@ public class ClientThread extends Thread {
 			try{
 				System.out.println("Will it freeze?");
 				game = (GuessInfo) i.readObject();
-//				System.out.println("Froze here");
-//				callback.accept(game);
+				System.out.println("Froze here");
+				callback.accept(game);
 
 			} catch( Exception e){
 				System.out.println("Socket Issues");
 				// TODO: logic for calculating unique PIDS
 				  // Do we actually need to do this, doesnt seem to be a good way on Java8
-			    // I recommend these codes if needed 
+			  
+				// I recommend these codes if needed 
 //				String pid = ManagementFactory.getRuntimeMXBean().getName();
 //				int splitMark = pid.indexOf("@");
 //				if(splitMark != -1) {String pidNumbers = pid.substring(0, splitMark);}
 			}
-
 		
 		}
 	}
 	
 	
 	public void ending() throws IOException {
-		sClient.close();
+		//TODO: Does not close connection
+		return;
 	}
 	
 	public GuessInfo recieve() {

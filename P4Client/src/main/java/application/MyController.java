@@ -58,6 +58,7 @@ public class MyController implements Initializable {
         clientConnection = new ClientThread( data-> {
             Platform.runLater(()-> {
               System.out.println("Froze inside runLater");
+              game.user = userName;
                 //listItems.getItems().add(data.toString());
               clientConnection.send(game);
 
@@ -133,9 +134,9 @@ public class MyController implements Initializable {
         
         
         // TODO: Update game to server, Get Server response
-//        System.out.println("froze at send");
-//        clientConnection.send(game);
-//        System.out.println("Made it past send");
+        System.out.println("froze at send");
+        clientConnection.send(game);
+        System.out.println("Made it past send");
 //		game = clientConnection.recieve();
 
         
@@ -151,15 +152,12 @@ public class MyController implements Initializable {
 //            lblRemain.setText("Guesses Remaining: " + game.remainingGuess);
              
             
-            //TODO: Got to add functionality for counting how many categories are wrong
-            // when the remaining guesses reaches 0 the game ends
-            
             if(game.correct) {
             	back();
             }
             if(game.remainingGuess == 0) { // Lost a category
             	//TODO: If there is anything client side that has to happen
-            	// 	when losing, do here
+            	// 	when losing, do here IMPORTANT, THIS SAME QUESTION IS IN BACKACTION90
             	game.remainingGuess = 6;
             	back();
             }
@@ -171,7 +169,8 @@ public class MyController implements Initializable {
     
     public void backAction(ActionEvent e) {
     	try {
-    		//TODO: Lost for backing out
+    		//TODO: If there is anything client side that has to happen
+        	// 	when losing, do here IMPORTANT, THIS SAME QUESTION IS IN BACKACTION90 letterclick()
     		game.remainingGuess = 6;
 			back();
 		} catch (IOException e1) {
@@ -187,6 +186,35 @@ public class MyController implements Initializable {
         secondBox.getStylesheets().add("/style/gmStyle.css");//set style
 
         thirdBox.getScene().setRoot( secondBox);//update scene graph	
+        
+        // Counts the categories and decides if it should be disabled upon return
+        int one,two,three;
+        one=two=three=0;
+        for(int i=0; i < game.catChosen.size(); i++) {
+        	switch(game.catChosen.get(i)) {
+        	case 1:
+        		one += 1;
+        		break;
+        	case 2:
+        		two += 1;
+        		break;
+        	case 3:
+        		three +=1;
+        		break;
+        	}
+        }
+        if (three >= 3) {
+        	cat3.setDisable(true);
+        	cat3.setStyle("-fx-background-color: Black");
+        }
+        if(two >= 3) {
+        	cat2.setDisable(true);
+        	cat2.setStyle("-fx-background-color: Black");
+        }
+        if(one >= 1) {
+        	cat1.setDisable(true);
+        	cat1.setStyle("-fx-background-color: Black");
+        }
     }
     
     // Ends Program
