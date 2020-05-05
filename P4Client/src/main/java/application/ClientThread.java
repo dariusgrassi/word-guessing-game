@@ -20,7 +20,7 @@ public class ClientThread extends Thread {
 	GuessInfo game;
 	int portNum;
 
-	ClientThread(Consumer<Serializable> call, int port){
+	public ClientThread(Consumer<Serializable> call, int port){
 		this.callback = call;
 		this.portNum = port;
 		this.game = new GuessInfo();
