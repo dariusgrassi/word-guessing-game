@@ -12,6 +12,7 @@ public class GuessInfo implements Serializable {
     char guessedLetter;
     String user;
 
+    boolean end;
     boolean correct; // Assuming 
     ArrayList<Integer> catChosen = new ArrayList<>();
 
@@ -20,6 +21,7 @@ public class GuessInfo implements Serializable {
     	// Assuming that you start with 0 correct words
     	remainingGuess=6;
         correctWords=0;
+        end = false;
     	
     }
 

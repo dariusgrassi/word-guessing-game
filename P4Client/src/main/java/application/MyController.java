@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+
 public class MyController implements Initializable {
 
     GuessInfo game = new GuessInfo();
@@ -59,7 +60,7 @@ public class MyController implements Initializable {
         clientConnection = new ClientThread( data-> {
             Platform.runLater(()-> {
               System.out.println("Froze inside runLater");
-              game.user = userName;
+              clientConnection.game = game;
                 //listItems.getItems().add(data.toString());
               clientConnection.send(game);
 
@@ -68,13 +69,12 @@ public class MyController implements Initializable {
         }, port);                
 
         game.user = userName; // Doesnt override game info
-//        clientConnection.game = game;
         System.out.println(userName);
         // set the username
         // connect to server
 
         clientConnection.start();
-
+        
         // go to game menu
         //get instance of the loader class
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/gameMenu.fxml"));
@@ -131,6 +131,7 @@ public class MyController implements Initializable {
         ((Button)e.getSource()).setDisable(true);       // Disable character button
         ((Button)e.getSource()).setStyle("-fx-background-color:Black;");
         String val = ((Button)e.getSource()).getText(); // Get the name of button
+//        game = clientConnection.game;
         game.guessedLetter = val.charAt(0);             // set the name to guessed letter
         
         
@@ -142,15 +143,12 @@ public class MyController implements Initializable {
 
         
         System.out.println("User " + game.user + " clicked " + game.guessedLetter);
-        
 
-//        System.out.println("Counting down: " +game.remainingGuess);
-        
         // if the person guesses wrong, then it returns to the main menu
         if(game.remainingGuess >= 0) {   	
             game.remainingGuess -= 1;
             System.out.println("Counting down: " + game.remainingGuess);
-//            lblRemain.setText("Guesses Remaining: " + game.remainingGuess);
+//            lblRemain.setText("Guesses Remaining: 1" );
              
             
             if(game.correct) {
@@ -223,7 +221,10 @@ public class MyController implements Initializable {
     	// TODO: SCORE SHOULD BE SHOWN
     	Stage primary = (Stage) secondBox.getScene().getWindow();
     	primary.close();
-    	clientConnection.ending();
+    	game.end = true;
+
+    	System.out.println("froze at send");
+    	clientConnection.send(game);
     }
 
 

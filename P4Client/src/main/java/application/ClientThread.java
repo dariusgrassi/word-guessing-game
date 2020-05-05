@@ -34,9 +34,32 @@ public class ClientThread extends Thread {
 			sClient = new Socket("127.0.0.1", portNum);
 			o = new ObjectOutputStream( sClient.getOutputStream());
 			i = new ObjectInputStream( sClient.getInputStream());
-
 			sClient.setTcpNoDelay(true);
+			//Where client receives GuessInfo from server
+			while( true){
+				try{
+					game = (GuessInfo) i.readObject();
+					System.out.println("Froze here");
+					callback.accept(game);
+					if(game.end)
+						break;
+
+				} catch( Exception e){
+					System.out.println("Socket Issues");
+					// TODO: logic for calculating unique PIDS
+					  // Do we actually need to do this, doesnt seem to be a good way on Java8
+				  
+					// I recommend these codes if needed 
+//					String pid = ManagementFactory.getRuntimeMXBean().getName();
+//					int splitMark = pid.indexOf("@");
+//					if(splitMark != -1) {String pidNumbers = pid.substring(0, splitMark);}
+				}
 			
+			}
+			//TODO: Doesnt close correctly for some reason
+			i.close();
+			o.close();
+			sClient.close();
 
 		} catch( Exception e){
 			System.out.println("Stream Wasnt Open");
@@ -44,50 +67,14 @@ public class ClientThread extends Thread {
 			//sClient.close();
 		}
 
-		//Where client receives GuessInfo from server
-		while( true){
-			try{
-				System.out.println("Will it freeze?");
-				game = (GuessInfo) i.readObject();
-				System.out.println("Froze here");
-				callback.accept(game);
+		
 
-			} catch( Exception e){
-				System.out.println("Socket Issues");
-				// TODO: logic for calculating unique PIDS
-				  // Do we actually need to do this, doesnt seem to be a good way on Java8
-			  
-				// I recommend these codes if needed 
-//				String pid = ManagementFactory.getRuntimeMXBean().getName();
-//				int splitMark = pid.indexOf("@");
-//				if(splitMark != -1) {String pidNumbers = pid.substring(0, splitMark);}
-			}
 		
-		}
 	}
 	
 	
-	public void ending() throws IOException {
-		i.close();
-		o.close();
-		return;
-	}
 	
-	public GuessInfo recieve() {
-		
-		System.out.println("Will it freeze? Inside recieve()");
-		try {
-			game = (GuessInfo) i.readObject();
-			System.out.println("Froze here Inside recieve()");
-			callback.accept(game);
-			return game;
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return game;
-		
-	}
+
 
 	//Where client sends GuessInfo to server
 	public void send(GuessInfo data) {
