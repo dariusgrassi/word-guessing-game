@@ -21,6 +21,7 @@ public class Server {
 
     GuessInfo game = new GuessInfo();
     int portNum;
+    boolean serverStarted;
 
     boolean nextRoundPhase = false;
 
@@ -39,6 +40,7 @@ public class Server {
         public void run() {
 
             System.out.println("Server is now running on port " + portNum);
+            serverStarted = true;
 
             try (ServerSocket mySocket = new ServerSocket(portNum)) {
                 //Listen for client to connect to server
