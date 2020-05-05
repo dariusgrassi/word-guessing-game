@@ -1,6 +1,7 @@
 package application;
 
 import java.io.ObjectInputStream;
+import java.util.Random;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 import javafx.application.Platform;
 import javafx.scene.control.ListView;
+import java.io.*;
 
 public class Server {
 
@@ -41,7 +43,6 @@ public class Server {
             try (ServerSocket mySocket = new ServerSocket(portNum)) {
                 //Listen for client to connect to server
                 while (true) {
-
                     //When client does connect, add them to our list of clients
                     ClientThread c = new ClientThread(mySocket.accept(), count);
                     System.out.println("client has connected to server: " + "client #" + count);
@@ -49,7 +50,7 @@ public class Server {
                     callback.accept("Client has connected to server: " + "client #" + count);
                     clients.add(c);
                     c.start();
-
+                    
                     count++;
                 }
             } catch (Exception e) {
@@ -83,7 +84,15 @@ public class Server {
                 }
             }
         }
-
+        public void updateClients(int client)
+        {	try {
+        		clients.get(client).out.reset();
+        		clients.get(client).out.writeObject(game);
+        		clients.get(client).out.reset();
+        	} catch  (Exception e) {
+        	}
+        	
+        }
         //Runs as long as client is connected
         public void run() {
             try {
@@ -92,11 +101,73 @@ public class Server {
                 connection.setTcpNoDelay(true);
             } catch (Exception e) {
             }
-
+            GuessInfo currentGame = new GuessInfo();
             while(true) {
                 try {
                     game = (GuessInfo) in.readObject();
-//                    callback.accept(game);
+                    if(game.wordLength == 0) {
+                    	int category = game.catChosen.get(count);
+                    	Random rand = new Random();
+                    	game.lineOfWord = rand.nextInt(50);
+                    	if(category == 1) {
+                    		File file = new File("music.txt");
+                    		BufferedReader read = new BufferedReader(new FileReader(file));
+                    		int i = 0;
+                    		while(i < game.lineOfWord){
+                    			i++;
+                    			read.readLine();
+                    		}
+                    		game.wordLength = read.readLine().length();
+                    		System.out.println(game.wordLength);
+                    		game.remainingGuess = 6;
+                    		game.correctWords = 0;
+                    		game.correct = false;
+                    		currentGame = game;
+                    		//updateClients(game.clientNumber);
+                    		
+                    	}
+                    	else if(category == 2) {
+                    		File file = new File("animals.txt");
+                    		BufferedReader read = new BufferedReader(new FileReader(file));
+                    		int i = 0;
+                    		while(i < game.lineOfWord){
+                    			i++;
+                    			read.readLine();
+                    		}
+                    		game.wordLength = read.readLine().length();
+                    		System.out.println(game.wordLength);
+                    		game.remainingGuess = 6;
+                    		game.correctWords = 0;
+                    		game.correct = false;
+                    		currentGame = game;
+                    	}
+                    	else if(category == 3) {
+                    		File file = new File("food.txt");
+                    		BufferedReader read = new BufferedReader(new FileReader(file));
+                    		int i = 0;
+                    		while(i < game.lineOfWord){
+                    			i++;
+                    			read.readLine();
+                    		}
+                    		game.wordLength = read.readLine().length();
+                    		System.out.println(game.wordLength);
+                    		game.remainingGuess = 6;
+                    		game.correctWords = 0;
+                    		game.correct = false;
+                    		currentGame = game;
+                    	
+                    	}
+                    }
+                    else {
+                    	currentGame = game;
+                    	
+                    	//if(currentGame.guessedLetter==) {
+                    		
+               //     	}
+                    	if(currentGame.guessedLetter == currentGame.wordLength) {
+                    		currentGame.correct = true;
+                    	}
+                    }
                 }
 
                 catch(Exception e){
